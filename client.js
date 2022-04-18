@@ -9,6 +9,15 @@ function send(){
         return false;
     }
 
+    function solve(){     
+        ws.send("dick")
+        //console.log(document.getElementById("fuck").value, document.getElementById("dick").value)
+        // document.getElementById("fuck").value = '';
+        // document.getElementById("dick").value = '';
+        return false;
+    }
+
+
 
 ws.onmessage = function (event) {
     const maze = (event.data).split("+");
@@ -22,5 +31,6 @@ ws.onmessage = function (event) {
         txt += value.replaceAll(" ", "&nbsp;&nbsp;&nbsp;")+ "<br>"; 
     }
 }
+
 
 

@@ -1,4 +1,5 @@
 
+from distutils.command.sdist import sdist
 import random
 
 
@@ -71,6 +72,60 @@ def createMaze(size, width):
     fuck.insert(0, printRoofRow(width) + "+")
     fuck.append(printFloorRow(width))
     print('\n')
-
     return fuck
+
+a = createMaze(7,7)
+
+# debug purpose
+def printMaze(a):
+    for i in range(len(a)):
+        print(a[i])
+
+def solution(a):
+    shit = []
+    def right(a, i, index):
+        for j in range(index, len(a[i])):
+            if a[i][j] == " ":
+                return True
+            if a[i][j] == "|":
+                return False
+
+    index = 0
+
+    for i in range(len(a[0])):
+        if a[0][i] == " ":
+            index = i
+            break
+    # print(a[0])
+    shit.append(a[0])
+
+    for i in range(1, len(a)):
+        done = False
+        string = a[i]
+        z = index
+        while(done == False):
+            if(right(a, i, index)):
+                if a[i][z] == " ":
+                    string = string[:z] + "X" + string[z+1:]
+                    index = z
+                    done = True
+                string = string[:z] + "X" + string[z+1:]
+                z+=1
+
+            else:
+                if a[i][z] == " ":
+                    string = string[:z] + "X" + string[z+1:]
+                    index = z
+                    done = True
+                string = string[:z] + "X" + string[z+1:]
+                z-=1
+        shit.append(string)
+        # print(string)
+    return shit
+
+
+print(printMaze(a))
+print(solution(a))
+print(createMaze(7,7))
+print(printMaze(solution(a)))
 
